@@ -29,7 +29,7 @@ def add_question_to_history(prompt):
         'timestamp': timestamp
     })
 
-def summarize_image(image_path,prompt):
+def summarize_doc(image_path,prompt):
     myfile = genai.upload_file(image_path)
     model = genai.GenerativeModel("gemini-1.5-flash")
     result = model.generate_content(
@@ -56,18 +56,18 @@ def main():
         st.sidebar.info("No questions asked yet!")
     with st.form("input_form", clear_on_submit=True,enter_to_submit=True):
         prompt = st.text_area("Enter your prompt here:", key="input_text", height=100 ,label_visibility="collapsed" )
-        uploaded_image = st.file_uploader("click to upload  a fiile",label_visibility="collapsed")
+        uploaded_file = st.file_uploader("click to upload  a file",label_visibility="collapsed")
         button = st.form_submit_button("Submit")
-        image_path = ""
-        if uploaded_image is not None:
-            image_path = os.path.join("uploads", uploaded_image.name)
-            with open(image_path, "wb") as f:
-                f.write(uploaded_image.getbuffer())
+        file_path = ""
+        if uploaded_file is not None:
+            file_path = os.path.join("uploads", uploaded_file.name)
+            with open(file_path, "wb") as f:
+                f.write(uploaded_file.getbuffer())
         if button:
             #buton clicked
             add_question_to_history(prompt)
-            if uploaded_image and prompt is not None:
-                st.write(f"{summarize_image(image_path,prompt)}")
+            if uploaded_file and prompt is not None:
+                st.write(f"{summarize_doc(file_path,prompt)}")
             else:
                 st.write(f"{code_assistant(prompt)}")
     if st.sidebar.button("Clear History"):
