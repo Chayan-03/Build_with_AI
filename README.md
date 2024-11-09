@@ -28,6 +28,7 @@ This project is a simple Generative Assistant application built with [Streamlit]
 
     ```bash
     pip install -r requirements.txt
+    pip install -U google-generativeai
     ```
 
 3. **Set Up Environment Variables:**
