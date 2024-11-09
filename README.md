@@ -18,7 +18,7 @@ This project is a simple Generative Assistant application built with [Streamlit]
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/your-username/generative-assistant.git
+    git clone https://github.com/Chayan-03/Build_with_AI.git
     cd generative-assistant
     ```
 
